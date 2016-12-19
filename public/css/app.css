@@ -29,7 +29,8 @@ html {
       font-size: 25px; } }
   @media only screen and (min-device-width: 1024px) {
     html {
-      font-size: 18px; } }
+      font-size: 18px;
+      letter-spacing: -1px; } }
 
 body {
   display: flex;
@@ -62,11 +63,19 @@ header {
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  background-image: url("./../assets/logo.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100%; }
   @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     #logo {
-      margin-left: 0.12rem;
-      margin-top: 0.09rem; } }
+      width: auto;
+      padding-left: 0.12rem;
+      padding-top: 0.09rem;
+      content: url("./../assets/logo.svg");
+      background: none; } }
   @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
     #logo {
       padding-top: 0.15rem;
