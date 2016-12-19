@@ -2,7 +2,18 @@
   top: 0;
   left: 0;
   padding: 0;
-  margin: 0; }
+  margin: 0;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Chrome/Safari/Opera */
+  -khtml-user-select: none;
+  /* Konqueror */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none; }
 
 html {
   background-image: url("./../assets/bg.jpg");
@@ -72,7 +83,8 @@ header {
   background-color: transparent;
   color: #B14125;
   border: solid 1px orange;
-  text-align: center; }
+  text-align: center;
+  cursor: pointer; }
   @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     #more {
       width: 1.5rem;
@@ -99,7 +111,7 @@ header {
       font-size: 1.3rem;
       line-height: 1.5rem; } }
 
-#more:hover {
+#more:hover, #more:active {
   background-color: #DF5227;
   color: white;
   border-color: #DF5227; }
@@ -135,7 +147,8 @@ header {
 .menu-item {
   box-sizing: border-box;
   border-style: none;
-  line-height: 200%; }
+  line-height: 200%;
+  cursor: pointer; }
   @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     .menu-item {
       flex: 1 0 33%;
@@ -149,7 +162,8 @@ header {
   color: #DF5227; }
 
 .sep {
-  line-height: 180%; }
+  line-height: 180%;
+  cursor: default; }
   @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     .sep {
       display: none; } }
@@ -169,7 +183,7 @@ header {
       padding-top: 1.2rem; } }
   @media only screen and (min-device-width: 1024px) {
     #content {
-      padding-top: 1.2rem; } }
+      padding-top: 1.5rem; } }
 
 .post {
   background-color: white;
@@ -223,20 +237,35 @@ header {
   color: black;
   display: inline-block;
   text-wrap: unrestricted;
+  width: 100%;
+  font-size: 1.3rem;
+  cursor: pointer;
+  margin-top: 1rem; }
+
+#footer-space {
   width: 100%; }
+  @media only screen and (max-device-width: 450px) and (orientation: portrait) {
+    #footer-space {
+      height: 0.2rem; } }
+  @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
+    #footer-space {
+      height: 4rem; } }
+  @media only screen and (min-device-width: 1024px) {
+    #footer-space {
+      height: 4rem; } }
 
 footer {
   width: 100%;
-  height: 2rem;
+  height: 2.5rem;
   background-color: #3A3A3C;
+  display: flex;
   flex-flow: row wrap;
-  justify-content: center; }
+  justify-content: center;
+  position: fixed;
+  top: calc(100% - 2.5rem); }
   @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     footer {
       display: none; } }
   @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
-    footer {
-      display: none; } }
-  @media only screen and (min-device-width: 1024px) {
     footer {
       display: none; } }

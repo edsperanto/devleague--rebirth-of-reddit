@@ -31,6 +31,7 @@ function loadSub(name) {
 						(typeof response[i].data.preview === 'object');
 			if(pass || response[i].data.domain === 'i.reddituploads.com') { getContent(i); }
 		}
+		document.getElementById('content').innerHTML += "<div id = 'footer-space'></div>";
 		function getContent(num) {
 			// create elements
 			let post = document.createElement('div');
