@@ -32,6 +32,7 @@ function loadSub(name) {
 			if(pass || response[i].data.domain === 'i.reddituploads.com') { getContent(i); }
 		}
 		function getContent(num) {
+			// create elements
 			let post = document.createElement('div');
 			let aspect = document.createElement('div');
 			let postContent = document.createElement('div');
@@ -42,6 +43,7 @@ function loadSub(name) {
 			let snippet = document.createElement('a');
 			let imgHref = getHref(num);
 			let previewHref = imageonly => getPreview(response, num, imageonly).split('&amp;').join('\&');
+			// assign values
 			post.className = 'post';
 			aspect.className = 'aspect';
 			postContent.className = 'post-content';
@@ -53,11 +55,14 @@ function loadSub(name) {
 			imageLink.href = imgHref;
 			imageLink.style.backgroundImage = `url(${previewHref(true)})`;
 			image.style.backgroundImage = `url(${previewHref()})`;
+			title.innerText = response[num].data.title;
+			// append structure
 			content.appendChild(post);
 			post.appendChild(aspect);
 			post.appendChild(postContent);
 			postContent.appendChild(imageLink);
 			imageLink.appendChild(image);
+			postContent.appendChild(title);
 		}
 		function getHref(num) {
 			let imgHref = (findExt(response[num].data.url)) ? 
@@ -71,18 +76,16 @@ function loadSub(name) {
 				return response[num].data.url;
 			}else{
 				let images = response[num].data.preview.images[0];
+				if(imageOnly) {
+					return images.resolutions[0].url;
+				}
 				if(response[num].data.url.indexOf('.gif') > -1) {
-					if(imageOnly) {
-						return images.resolutions[0].url;
-					}else{
-						let gifs = images.variants.gif.resolutions;
-						return (gifs[1].url.indexOf('.gifv') > -1) ?
-						       (gifs[1].url.substr(0, imgHref.length - 1)) : 
-						       (gifs[1].url);
-					}
+					let gifs = images.variants.gif.resolutions;
+					return (gifs[1].url.indexOf('.gifv') > -1) ?
+					       (gifs[1].url.substr(0, imgHref.length - 1)) : 
+					       (gifs[1].url);
 				}else{
-					return (imageOnly) ? (images.resolutions[0].url)
-									   : (images.resolutions[2].url);
+					return images.resolutions[2].url;
 				}
 			}
 		}
@@ -90,7 +93,7 @@ function loadSub(name) {
 }
 
 function loadRndSub() {
-	let subreddits = ['cats', 'aww', 'scenery', 'EarthPorn', 'auroraporn', 'softwaregore', 'spaceporn', 'foodporn', 'grilledcheese', 'techsupportgore', 'firstworldanarchists']
+	let subreddits = ['cats', 'aww', 'scenery', 'EarthPorn', 'auroraporn', 'softwaregore', 'spaceporn', 'foodporn', 'grilledcheese', 'techsupportgore', 'firstworldanarchists', 'InterestingGIFs', 'NatureGifs', 'perfectloops', 'physicsgifs']
 	loadSub(subreddits[Math.floor(Math.random() * (subreddits.length - 1))]);
 }
 
@@ -100,3 +103,5 @@ document.getElementById('app').addEventListener('click', function() {
 });
 
 loadRndSub();
+
+//loadSub('physicsgifs');
