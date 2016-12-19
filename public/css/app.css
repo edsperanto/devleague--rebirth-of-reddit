@@ -10,15 +10,15 @@ html {
   height: 100%;
   font-family: "Helvetica";
   letter-spacing: -3px; }
-  @media only screen and (max-device-width: 450px) {
+  @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     html {
       font-size: 45px; } }
   @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
     html {
-      font-size: 40px; } }
-  @media (min-width: 1024px) {
+      font-size: 25px; } }
+  @media only screen and (min-device-width: 1024px) {
     html {
-      font-size: 40px; } }
+      font-size: 18px; } }
 
 body {
   display: flex;
@@ -33,7 +33,7 @@ header {
   flex-flow: row wrap;
   justify-content: center;
   background: url("./../assets/header_bg.svg") no-repeat center; }
-  @media only screen and (max-device-width: 450px) {
+  @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     header {
       height: 3rem;
       justify-content: flex-start;
@@ -41,34 +41,44 @@ header {
   @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
     header {
       height: 3rem;
-      justify-content: flex-start;
-      background: none; } }
-  @media (min-width: 1024px) {
+      justify-content: center; } }
+  @media only screen and (min-device-width: 1024px) {
     header {
       height: 3rem;
-      justify-content: flex-start;
-      background: none; } }
+      justify-content: center; } }
 
 #logo {
-  height: 100%; }
-  @media only screen and (max-device-width: 450px) {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     #logo {
       margin-left: 0.12rem;
       margin-top: 0.09rem; } }
+  @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
+    #logo {
+      padding-top: 0.15rem;
+      height: 90%; } }
+  @media only screen and (min-device-width: 1024px) {
+    #logo {
+      padding-top: 0.15rem;
+      height: 100%;
+      margin-bottom: 0.15rem; } }
 
 #more {
   position: absolute;
   float: right;
   background-color: transparent;
   color: #B14125;
-  border: solid 1px orange; }
-  @media only screen and (max-device-width: 450px) {
+  border: solid 1px orange;
+  text-align: center; }
+  @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     #more {
       width: 1.5rem;
       height: 1.5rem;
       top: 0.78rem;
       left: calc(100% - 2.2rem);
-      text-align: center;
       font-size: 1.5rem;
       line-height: 1.3rem; } }
   @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
@@ -80,15 +90,14 @@ header {
       text-align: center;
       font-size: 1.5rem;
       line-height: 1.3rem; } }
-  @media (min-width: 1024px) {
+  @media only screen and (min-device-width: 1024px) {
     #more {
       width: 1.5rem;
       height: 1.5rem;
-      top: 0.78rem;
-      left: calc(100% - 2.2rem);
-      text-align: center;
-      font-size: 1.5rem;
-      line-height: 1.3rem; } }
+      top: 0.7rem;
+      left: calc(100% - 2.5rem);
+      font-size: 1.3rem;
+      line-height: 1.5rem; } }
 
 #more:hover {
   background-color: #DF5227;
@@ -105,13 +114,13 @@ header {
   justify-content: center;
   align-items: center;
   line-height: 1.2rem; }
-  @media only screen and (max-device-width: 450px) {
+  @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     #menu {
       font-size: 1rem; } }
   @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
     #menu {
       font-size: 1rem; } }
-  @media (min-width: 1024px) {
+  @media only screen and (min-device-width: 1024px) {
     #menu {
       font-size: 1rem; } }
 
@@ -140,25 +149,44 @@ header {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  padding-top: 0.5rem; }
+  box-sizing: border-box; }
+  @media only screen and (max-device-width: 450px) and (orientation: portrait) {
+    #content {
+      padding-top: 0.5rem; } }
+  @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
+    #content {
+      padding-top: 1.2rem; } }
+  @media only screen and (min-device-width: 1024px) {
+    #content {
+      padding-top: 1.2rem; } }
 
 .post {
-  background-color: white; }
-  @media only screen and (max-device-width: 450px) {
+  background-color: white;
+  display: inline-block; }
+  @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     .post {
       width: calc(100% - 1rem);
-      height: 300px;
       margin-bottom: 0.5rem; } }
   @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
     .post {
-      width: calc(100% - 1rem);
-      height: 300px;
-      margin-bottom: 0.5rem; } }
-  @media (min-width: 1024px) {
+      width: 43%;
+      margin: 0.7rem;
+      border: solid 5px white; } }
+  @media only screen and (min-device-width: 1024px) {
     .post {
-      width: calc(100% - 1rem);
-      height: 300px;
-      margin-bottom: 0.5rem; } }
+      width: 33%;
+      margin: 0.7rem;
+      border: solid 5px white; } }
+
+.aspect {
+  padding-top: 120%; }
+
+.post-content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0; }
 
 footer {
   width: 100%;
@@ -167,12 +195,12 @@ footer {
   display: flex;
   flex-flow: row wrap;
   justify-content: center; }
-  @media only screen and (max-device-width: 450px) {
+  @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     footer {
       display: none; } }
   @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
     footer {
       display: none; } }
-  @media (min-width: 1024px) {
+  @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
     footer {
       display: none; } }

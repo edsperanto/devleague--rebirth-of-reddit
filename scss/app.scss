@@ -5,13 +5,13 @@ $light-gray: #7B7C7E;
 
 @mixin respond-to($media) {
   @if $media == handheld {
-    @media only screen and (max-device-width: 450px) { @content; }
+    @media only screen and (max-device-width: 450px) and (orientation: portrait) { @content; }
   }
   @else if $media == tablet {
     @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) { @content; }
   }
   @else if $media == large {
-    @media (min-width: 1024px) { @content; }
+    @media only screen and (min-device-width: 1024px) { @content; }
   }
 }
 
@@ -32,10 +32,10 @@ html {
 		font-size: 45px;
 	}
 	@include respond-to(tablet) {
-		font-size: 40px;
+		font-size: 25px;
 	}
 	@include respond-to(large) {
-		font-size: 40px;
+		font-size: 18px;
 	}
 }
 
@@ -60,21 +60,31 @@ header {
 	}
 	@include respond-to(tablet) { 
 		height: 3rem;
-		justify-content: flex-start;
-		background: none;
+		justify-content: center;
 	}
 	@include respond-to(large) { 
 		height: 3rem;
-		justify-content: flex-start;
-		background: none;
+		justify-content: center;
 	}
 }
 
 #logo{
 	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	@include respond-to(handheld) { 
 		margin-left: 0.12rem;
 		margin-top: 0.09rem;
+	}
+	@include respond-to(tablet) { 
+		padding-top: 0.15rem;
+		height: 90%;
+	}
+	@include respond-to(large) { 
+		padding-top: 0.15rem;
+		height: 100%;
+		margin-bottom: 0.15rem;
 	}
 }
 
@@ -84,12 +94,12 @@ header {
 	background-color: transparent;
 	color: $dark-orange;
 	border: solid 1px orange;
+	text-align: center;
 	@include respond-to(handheld) {
 		width: 1.5rem;
 		height: 1.5rem;
 		top: 0.78rem;
 		left: calc(100% - 2.2rem);
-		text-align: center;
 		font-size: 1.5rem;
 		line-height: 1.3rem;
 	}
@@ -105,11 +115,10 @@ header {
 	@include respond-to(large) {
 		width: 1.5rem;
 		height: 1.5rem;
-		top: 0.78rem;
-		left: calc(100% - 2.2rem);
-		text-align: center;
-		font-size: 1.5rem;
-		line-height: 1.3rem;
+		top: 0.7rem;
+		left: calc(100% - 2.5rem);
+		font-size: 1.3rem;
+		line-height: 1.5rem;
 	}
 }
 
@@ -170,26 +179,48 @@ header {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
-	padding-top: 0.5rem;
+	box-sizing: border-box;
+	@include respond-to(handheld) {
+		padding-top: 0.5rem;
+	}
+	@include respond-to(tablet) {
+		padding-top: 1.2rem;
+	}
+	@include respond-to(large) {
+		padding-top: 1.2rem;
+	}
 }
 
 .post {
 	background-color: white;
+	display: inline-block;
+	height: 0;
 	@include respond-to(handheld) {
 		width: calc(100% - 1rem);
-		height: 300px;
 		margin-bottom: 0.5rem;
-	}
+	;
 	@include respond-to(tablet) {
-		width: calc(100% - 1rem);
-		height: 300px;
-		margin-bottom: 0.5rem;
+		width: 43%;
+		margin: 0.7rem;
+		border: solid 5px white;
 	}
 	@include respond-to(large) {
-		width: calc(100% - 1rem);
-		height: 300px;
-		margin-bottom: 0.5rem;
+		width: 33%;
+		margin: 0.7rem;
+		border: solid 5px white;
 	}
+}
+
+.aspect {
+	padding-top: 120%; 
+}
+
+.post-content {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
 }
 
 footer {
