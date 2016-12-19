@@ -2,6 +2,7 @@ $dark-orange: #B14125;
 $light-orange: #DF5227;
 $dark-gray: #3A3A3C;
 $light-gray: #7B7C7E;
+$very-light-gray: #f2f2f2;
 
 @mixin respond-to($media) {
   @if $media == handheld {
@@ -243,7 +244,7 @@ header {
 	margin-left: 1.5rem;
 	height: calc(50% - 3rem);
 	box-sizing: border-box;
-	background-color: $light-gray;
+	background-color: $very-light-gray;
 	background-size: cover;
 	background-position: 0 0;
 	@include respond-to(handheld) {

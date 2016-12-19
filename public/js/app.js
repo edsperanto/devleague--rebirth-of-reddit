@@ -73,7 +73,7 @@ function loadSub(name) {
 				let images = response[num].data.preview.images[0];
 				if(response[num].data.url.indexOf('.gif') > -1) {
 					if(imageOnly) {
-						return images.resolutions[1].url;
+						return images.resolutions[0].url;
 					}else{
 						let gifs = images.variants.gif.resolutions;
 						return (gifs[1].url.indexOf('.gifv') > -1) ?
@@ -81,7 +81,8 @@ function loadSub(name) {
 						       (gifs[1].url);
 					}
 				}else{
-					return images.resolutions[2].url;
+					return (imageOnly) ? (images.resolutions[0].url)
+									   : (images.resolutions[2].url);
 				}
 			}
 		}
@@ -89,7 +90,7 @@ function loadSub(name) {
 }
 
 function loadRndSub() {
-	let subreddits = ['cats', 'aww', 'EarthPorn', 'auroraporn', 'softwaregore', 'spaceporn', 'foodporn', 'grilledcheese', 'techsupportgore', 'firstworldanarchists']
+	let subreddits = ['cats', 'aww', 'scenery', 'EarthPorn', 'auroraporn', 'softwaregore', 'spaceporn', 'foodporn', 'grilledcheese', 'techsupportgore', 'firstworldanarchists']
 	loadSub(subreddits[Math.floor(Math.random() * (subreddits.length - 1))]);
 }
 
@@ -98,6 +99,4 @@ document.getElementById('app').addEventListener('click', function() {
 	alert('You are here!')
 });
 
-//loadRndSub();
-
-loadSub('scenery');
+loadRndSub();
