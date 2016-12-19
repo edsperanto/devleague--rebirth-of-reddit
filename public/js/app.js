@@ -6,7 +6,7 @@ function load(link, callback) {
 }
 
 function notFindStr(searchQuery) {
-	let blackList = ['imageflake.com'/*, 'i.reddituploads.com'*/, 'thnk1994.com', 'youtube.com', 'youtu.be', 'docs.google.com', 'flickr', 'instagram', '500px', 'pinkbike', '/a/', '/gallery/', '/r/'];
+	let blackList = ['imageflake.com', 'gfycat', 'thnk1994.com', 'youtube.com', 'youtu.be', 'docs.google.com', 'flickr', 'instagram', '500px', 'pinkbike', '/a/', '/gallery/', '/r/'];
 	for(let i = 0; i < blackList.length; i++) {
 		if(searchQuery.indexOf(blackList[i]) > -1) { return false; }
 	}
@@ -14,7 +14,7 @@ function notFindStr(searchQuery) {
 }
 
 function findExt(searchQuery) {
-	let whiteList = ['.jpg', '.gifv', '.gif', '.png', 'shite.xyz', '.jpeg', 'reddituploads'];
+	let whiteList = ['.jpg', '.gifv', '.gif', '.png', 'shite.xyz', '.jpeg'];
 	for(let i = 0; i < whiteList.length; i++) {
 		if(searchQuery.indexOf(whiteList[i]) > -1) { return true; }
 	}
@@ -40,46 +40,48 @@ function loadSub(name) {
 			let title = document.createElement('a');
 			let stats = document.createElement('a');
 			let snippet = document.createElement('a');
-			let imgHref = 
-				(findExt(response[num].data.url)) ? 
-				(response[num].data.url) : (`${response[num].data.url}.jpg`);
-			imgHref = 	(imgHref.indexOf('.gifv') > -1) ? 
-						(imgHref.substr(0, imgHref.length - 1)) : (imgHref);
-			let previewHref = getPreview(response, num);
+			let imgHref = getHref(num);
+			let previewHref = imageonly => getPreview(response, num, imageonly).split('&amp;').join('\&');
 			post.className = 'post';
 			aspect.className = 'aspect';
 			postContent.className = 'post-content';
+			imageLink.className = 'post-image-link';
 			image.className = 'post-image';
 			title.className = 'post-title';
 			stats.className = 'post-stats';
 			snippet.className = 'post-snippet';
 			imageLink.href = imgHref;
-			image.style.backgroundImage = `url(${previewHref})`;
+			imageLink.style.backgroundImage = `url(${previewHref(true)})`;
+			image.style.backgroundImage = `url(${previewHref()})`;
 			content.appendChild(post);
 			post.appendChild(aspect);
 			post.appendChild(postContent);
 			postContent.appendChild(imageLink);
 			imageLink.appendChild(image);
 		}
-		function getPreview(response, num) {
-			if(response[num].data.domain === 'i.reddituploads.com') {
-				let tempStr = "";
-				for(let i = 0; i < response[num].data.url.length; i++) {
-					if(response[num].data.url.charAt(i) === '&') {
-						tempStr += '\&';
-						i += 4;
-					}else{
-						tempStr += response[num].data.url.charAt(i);
-					}
-				}
-				return tempStr;
+		function getHref(num) {
+			let imgHref = (findExt(response[num].data.url)) ? 
+			(response[num].data.url) : (`${response[num].data.url}.jpg`);
+			imgHref = 	(imgHref.indexOf('.gifv') > -1) ? 
+						(imgHref.substr(0, imgHref.length - 1)) : (imgHref);
+			return imgHref.split('&amp;').join('\&');
+		}
+		function getPreview(response, num, imageOnly) {
+			if(response[num].data.url.indexOf('reddituploads') > -1) {
+				return response[num].data.url;
 			}else{
 				let images = response[num].data.preview.images[0];
 				if(response[num].data.url.indexOf('.gif') > -1) {
-					let gifs = images.variants.gif.resolutions;
-					return gifs[0]; // high-def: gifs.length - 1
+					if(imageOnly) {
+						return images.resolutions[1].url;
+					}else{
+						let gifs = images.variants.gif.resolutions;
+						return (gifs[1].url.indexOf('.gifv') > -1) ?
+						       (gifs[1].url.substr(0, imgHref.length - 1)) : 
+						       (gifs[1].url);
+					}
 				}else{
-					return images.resolutions[0]; // high-def: images.resolutions.length - 1
+					return images.resolutions[2].url;
 				}
 			}
 		}

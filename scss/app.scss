@@ -237,12 +237,15 @@ header {
 	height: 100%;
 }
 
-.post-image {
-	background-size: cover;
-	background-position: 0 0;
-	height: calc(50% - 3rem);
+.post-image-link {
+	display: block;
 	margin-top: 1.5rem;
 	margin-left: 1.5rem;
+	height: calc(50% - 3rem);
+	box-sizing: border-box;
+	background-color: $light-gray;
+	background-size: cover;
+	background-position: 0 0;
 	@include respond-to(handheld) {
 		width: calc(100% - 3em);
 	}
@@ -252,6 +255,13 @@ header {
 	@include respond-to(large) {
 		width: calc(100% - 3rem);
 	}
+}
+
+.post-image {
+	background-size: cover;
+	background-position: 0 0;
+	height: 100%;
+	width: 100%;
 }
 
 footer {
