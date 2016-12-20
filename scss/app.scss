@@ -4,6 +4,8 @@ $dark-gray: #3A3A3C;
 $light-gray: #7B7C7E;
 $very-light-gray: #f2f2f2;
 $post-padding: 1.5rem;
+$dialog-width: 40%;
+$dialog-height: 20%;
 
 @mixin respond-to($media) {
   @if $media == handheld {
@@ -28,11 +30,12 @@ $post-padding: 1.5rem;
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none;
+    box-sizing: border-box;
 }
 
 html {
 	background-image: url('./../assets/bg.jpg');
-	color: white;
+	color: black;
 	height: 100%;
 	font-family: "Helvetica";
 	@include respond-to(handheld) {
@@ -59,21 +62,13 @@ header {
 	width: 100%;
 	background-color: white !important;
 	display: flex;
+	height: 3rem;
 	flex-flow: row wrap;
 	justify-content: center;
 	background: url('./../assets/header_bg.svg') no-repeat center;
 	@include respond-to(handheld) { 
-		height: 3rem;
 		justify-content: flex-start;
 		background: none;
-	}
-	@include respond-to(tablet) { 
-		height: 3rem;
-		justify-content: center;
-	}
-	@include respond-to(large) { 
-		height: 3rem;
-		justify-content: center;
 	}
 }
 
@@ -101,7 +96,6 @@ header {
 	@include respond-to(large) { 
 		padding-top: 0.15rem;
 		height: 100%;
-		margin-bottom: 0.15rem;
 	}
 }
 
@@ -177,7 +171,6 @@ header {
 }
 
 .menu-item {
-	box-sizing: border-box;
 	border-style: none;
 	line-height: 200%;
 	cursor: pointer;
@@ -205,13 +198,33 @@ header {
 	}
 }
 
+#dialog {
+	position: fixed;
+	z-index: 999;
+	width: $dialog-width;
+	height: $dialog-height;
+	top: 50% - $dialog-height / 2;
+	left: 50% - $dialog-width / 2;
+	background-color: white;
+	box-shadow: 0 0 1rem 0.2rem rgba(0, 0, 0, 33);
+	padding: 2rem;
+	#close-dialog {
+		width: 100%;
+		text-align: right;
+	}
+	#dialog-content {
+		height: 100%;
+		overflow: auto;
+		padding-bottom: 2rem;
+	}
+}
+
 #content {
 	width: 100%;
 	flex: 1;
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
-	box-sizing: border-box;
 	@include respond-to(handheld) {
 		padding-top: 0.5rem;
 	}
@@ -227,6 +240,7 @@ header {
 	background-color: white;
 	display: inline-block;
 	position: relative;
+	overflow: auto;
 	@include respond-to(handheld) {
 		width: calc(100% - 1rem);
 		margin-bottom: 0.5rem;
@@ -256,14 +270,12 @@ header {
 	width: 100%;
 	height: 100%;
 	padding: $post-padding;
-	box-sizing: border-box;
 }
 
 .post-image-link {
 	display: inline-block;
 	height: calc(50%);
 	width: 100%;
-	box-sizing: border-box;
 	background-color: $very-light-gray;
 	background-size: cover;
 	background-position: 0 0;
@@ -277,13 +289,13 @@ header {
 }
 
 .post-title {
-	color: black;
 	display: inline-block;
 	text-wrap: unrestricted;
 	width: 100%;
 	font-size: 1.3rem;
 	cursor: pointer;
 	margin-top: 1rem;
+	padding-bottom: 1rem;
 }
 
 #footer-space {

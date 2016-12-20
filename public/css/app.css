@@ -13,11 +13,12 @@
   /* Firefox */
   -ms-user-select: none;
   /* Internet Explorer/Edge */
-  user-select: none; }
+  user-select: none;
+  box-sizing: border-box; }
 
 html {
   background-image: url("./../assets/bg.jpg");
-  color: white;
+  color: black;
   height: 100%;
   font-family: "Helvetica"; }
   @media only screen and (max-device-width: 450px) and (orientation: portrait) {
@@ -42,22 +43,14 @@ header {
   width: 100%;
   background-color: white !important;
   display: flex;
+  height: 3rem;
   flex-flow: row wrap;
   justify-content: center;
   background: url("./../assets/header_bg.svg") no-repeat center; }
   @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     header {
-      height: 3rem;
       justify-content: flex-start;
       background: none; } }
-  @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
-    header {
-      height: 3rem;
-      justify-content: center; } }
-  @media only screen and (min-device-width: 1024px) {
-    header {
-      height: 3rem;
-      justify-content: center; } }
 
 #logo {
   height: 100%;
@@ -83,8 +76,7 @@ header {
   @media only screen and (min-device-width: 1024px) {
     #logo {
       padding-top: 0.15rem;
-      height: 100%;
-      margin-bottom: 0.15rem; } }
+      height: 100%; } }
 
 #more {
   position: absolute;
@@ -154,7 +146,6 @@ header {
       margin-left: 0; } }
 
 .menu-item {
-  box-sizing: border-box;
   border-style: none;
   line-height: 200%;
   cursor: pointer; }
@@ -177,13 +168,30 @@ header {
     .sep {
       display: none; } }
 
+#dialog {
+  position: fixed;
+  z-index: 999;
+  width: 40%;
+  height: 20%;
+  top: 40%;
+  left: 30%;
+  background-color: white;
+  box-shadow: 0 0 1rem 0.2rem black;
+  padding: 2rem; }
+  #dialog #close-dialog {
+    width: 100%;
+    text-align: right; }
+  #dialog #dialog-content {
+    height: 100%;
+    overflow: auto;
+    padding-bottom: 2rem; }
+
 #content {
   width: 100%;
   flex: 1;
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
-  box-sizing: border-box; }
+  justify-content: center; }
   @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     #content {
       padding-top: 0.5rem; } }
@@ -197,7 +205,8 @@ header {
 .post {
   background-color: white;
   display: inline-block;
-  position: relative; }
+  position: relative;
+  overflow: auto; }
   @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     .post {
       width: calc(100% - 1rem);
@@ -224,14 +233,12 @@ header {
   bottom: 0;
   width: 100%;
   height: 100%;
-  padding: 1.5rem;
-  box-sizing: border-box; }
+  padding: 1.5rem; }
 
 .post-image-link {
   display: inline-block;
   height: calc(50%);
   width: 100%;
-  box-sizing: border-box;
   background-color: #f2f2f2;
   background-size: cover;
   background-position: 0 0; }
@@ -243,13 +250,13 @@ header {
   width: 100%; }
 
 .post-title {
-  color: black;
   display: inline-block;
   text-wrap: unrestricted;
   width: 100%;
   font-size: 1.3rem;
   cursor: pointer;
-  margin-top: 1rem; }
+  margin-top: 1rem;
+  padding-bottom: 1rem; }
 
 #footer-space {
   width: 100%; }

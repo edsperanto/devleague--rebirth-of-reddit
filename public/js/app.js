@@ -1,3 +1,7 @@
+let currentSub = "";
+let subList = [];
+let alertActive = false;
+
 function load(link, callback) {
 	oReq = new XMLHttpRequest();
 	oReq.addEventListener('load', function() { callback.call(this); });
@@ -22,6 +26,7 @@ function findExt(searchQuery) {
 }
 
 function loadSub(name) {
+	tempAlert(`Welcome to /r/${currentSub}`, 2000);
 	document.getElementById('content').innerHTML = "";
 	load(`https://www.reddit.com/r/${name}.json`, function() {
 		let content = document.getElementById('content');
@@ -72,12 +77,12 @@ function loadSub(name) {
 						(imgHref.substr(0, imgHref.length - 1)) : (imgHref);
 			return imgHref.split('&amp;').join('\&');
 		}
-		function getPreview(response, num, imageOnly) {
+		function getPreview(response, num, fallback) {
 			if(response[num].data.url.indexOf('reddituploads') > -1) {
 				return response[num].data.url;
 			}else{
 				let images = response[num].data.preview.images[0];
-				if(imageOnly) {
+				if(fallback) {
 					return images.resolutions[0].url;
 				}
 				if(response[num].data.url.indexOf('.gif') > -1) {
@@ -94,14 +99,46 @@ function loadSub(name) {
 }
 
 function loadRndSub() {
-	let subreddits = ['cats', 'aww', 'scenery', 'EarthPorn', 'auroraporn', 'softwaregore', 'spaceporn', 'foodporn', 'grilledcheese', 'techsupportgore', 'firstworldanarchists', 'InterestingGIFs', 'NatureGifs', 'perfectloops', 'physicsgifs']
-	loadSub(subreddits[Math.floor(Math.random() * (subreddits.length - 1))]);
+	let subreddits = ['cats', 'aww', 'scenery', 'EarthPorn', 'auroraporn', 'softwaregore', 'spaceporn', 'foodporn', 'grilledcheese', 'techsupportgore', 'firstworldanarchists', 'InterestingGIFs', 'NatureGifs', 'perfectloops', 'physicsgifs'];
+	currentSub = subreddits[Math.floor(Math.random() * (subreddits.length - 1))];
+	loadSub(currentSub);
+}
+
+function tempAlert(msg, duration)
+{
+	let dialog = document.getElementById("dialog");
+	dialog.innerHTML = '<div id = \'close-dialog\'>[ x ]</div><br><div id=\'dialog-content\'>' + msg + '</div>';
+	dialog.style.opacity = 1;
+	clearTimeout(window.timer);
+	window.timer = setTimeout(() => {
+		dialog.style.opacity = 0;
+	}, duration);
 }
 
 document.getElementById('random').addEventListener('click', loadRndSub);
-document.getElementById('app').addEventListener('click', function() {
-	alert('You are here!')
+document.getElementById('boards').addEventListener('click', () => {
+	let msg = "<p>You have saved the following subreddits to your list:</p><ul>";
+	for(let i = 0; i < subList.length; i++) {
+		msg += '<li>/r/' + subList[i] + '</li>';
+	}
+	msg += '</ul>'
+	if(subList.length === 0) {
+		tempAlert('<p>You do not have any subreddits saved to your list... : (</p>', 2000);
+	}else{
+		tempAlert(msg, 5000);
+	}
+})
+document.getElementById('app').addEventListener('click', () => {
+	tempAlert('<p>You are here! Bow to your web app overlords!</p>', 2000);
 });
+document.getElementById('more').addEventListener('click', () => {
+	if(subList.indexOf(currentSub) === -1) {
+		subList.push(currentSub);
+		tempAlert(`<p>You have added /r/${currentSub} to your list!</p>`, 2000);
+	}else{
+		tempAlert(`<p>You already have /r/${currentSub} on your list!</p>`, 2000)
+	}
+})
 
 loadRndSub();
 
