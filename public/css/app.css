@@ -167,7 +167,6 @@ header {
   #dialog #dialog-content {
     height: 80%;
     overflow: auto;
-    padding-bottom: 2rem;
     display: block; }
   @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     #dialog {
