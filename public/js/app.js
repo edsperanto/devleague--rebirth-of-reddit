@@ -53,6 +53,8 @@ function loadSub(name) {
 			let previewHref = imageonly => getPreview(response, num, imageonly).split('&amp;').join('\&');
 			let author = response[num].data.author;
 			let upboats = response[num].data.ups;
+			let postTime = response[num].data.created_utc; // =  gmt, created_utc = pacific time
+			let timeDiff = calcTimeDiff(postTime, -10);
 			// assign values
 			post.className = 'post';
 			aspect.className = 'aspect';
@@ -79,7 +81,7 @@ function loadSub(name) {
 			image.style.backgroundImage = `url(${previewHref()})`;
 			title.innerText = response[num].data.title;
 			title.href = "http://www.reddit.com" + response[num].data.permalink;
-			stats.innerHTML = `by ${author} &nbsp; ● &nbsp; ${upboats} upboats`;
+			stats.innerHTML = `by ${author} &nbsp; ● &nbsp; ${timeDiff} &nbsp; ● &nbsp; ${upboats} upboats`;
 			stats.href = 'http://www.reddit.com/u/' + author;
 			snippet.innerText = response[num].data.selftext;
 			// let tempArr = title.href.split('/');
@@ -135,6 +137,39 @@ function tempAlert(msg, duration)
 	window.timer = setTimeout(() => {
 		dialog.style.display = 'none';
 	}, duration);
+}
+
+function calcTimeDiff(postTime) {
+	let localTime = new Date().getTime();
+	localTime = Math.round(localTime / 1000); 
+	let diffTime = localTime - postTime;
+	console.log('diff', diffTime);
+	let str = "";
+	if(diffTime < 60) { 
+		str = `${Math.floor(diffTime)} second`;
+		str += (diffTime > 1) ? ('s') : ('');
+	}else if(diffTime >= 60 && diffTime < 3600) {
+		str = `${Math.floor(diffTime / 60)} minute`;
+		str += (diffTime / 60 > 1) ? ('s') : ('');
+	}else if(diffTime >= 3600 && diffTime < 86400) {
+		str = `${Math.floor(diffTime / 3600)} hour`;
+		str += (diffTime / 3600 > 1) ? ('s') : ('');
+	}else if(diffTime >= 86400 && diffTime < 604800) {
+		str = `${Math.floor(diffTime / 86400)} day`;
+		str += (diffTime / 86400 > 1) ? ('s') : ('');
+	}else if(diffTime >= 604800 && diffTime < 2629743) {
+		str = `${Math.floor(diffTime / 604800)} week`;
+		str += (diffTime / 604800 > 1) ? ('s') : ('');
+	}else if(diffTime >= 2629743 && diffTime < 31556926) {
+		// average 30.44 days per month
+		str = `${Math.floor(diffTime / 2629743)} month`;
+		str += (diffTime / 2629743 > 1) ? ('s') : ('');
+	}else if(diffTime >= 31556926) {
+		// average 365.24 days per year
+		str = `${Math.floor(diffTime / 31556926)} year`;
+		str += (diffTime / 31556926 > 1) ? ('s') : ('');
+	}
+	return str + ' ago';
 }
 
 document.getElementById('random').addEventListener('click', loadRndSub);
