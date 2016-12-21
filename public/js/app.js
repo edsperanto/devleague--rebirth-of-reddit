@@ -49,6 +49,8 @@ function loadSub(name) {
 			let snippet = document.createElement('a');
 			let imgHref = getHref(num);
 			let previewHref = imageonly => getPreview(response, num, imageonly).split('&amp;').join('\&');
+			let author = response[num].data.author;
+			let upboats = response[num].data.ups;
 			// assign values
 			post.className = 'post';
 			aspect.className = 'aspect';
@@ -58,10 +60,6 @@ function loadSub(name) {
 			title.className = 'post-title';
 			stats.className = 'post-stats';
 			snippet.className = 'post-snippet';
-			imageLink.href = imgHref;
-			imageLink.style.backgroundImage = `url(${previewHref(true)})`;
-			image.style.backgroundImage = `url(${previewHref()})`;
-			title.innerText = response[num].data.title;
 			// append structure
 			content.appendChild(post);
 			post.appendChild(aspect);
@@ -69,6 +67,23 @@ function loadSub(name) {
 			postContent.appendChild(imageLink);
 			imageLink.appendChild(image);
 			postContent.appendChild(title);
+			postContent.appendChild(stats);
+			postContent.appendChild(snippet);
+			// load content
+			imageLink.href = imgHref;
+			imageLink.style.backgroundImage = `url(${previewHref(true)})`;
+			image.style.backgroundImage = `url(${previewHref()})`;
+			title.innerText = response[num].data.title;
+			title.href = "http://www.reddit.com" + response[num].data.permalink;
+			stats.innerHTML = `by ${author} &nbsp; ● &nbsp; ${upboats} upboats`;
+			let tempArr = title.href.split('/');
+			tempArr.pop();
+			tempArr.pop();
+			tempArr[tempArr.length - 1] += '.json';
+			// load(tempArr.join('/'), function() {
+			// 	let response = JSON.parse(this.responseText);
+			// 	console.log(response);
+			// })
 		}
 		function getHref(num) {
 			let imgHref = (findExt(response[num].data.url)) ? 
@@ -106,12 +121,13 @@ function loadRndSub() {
 
 function tempAlert(msg, duration)
 {
-	let dialog = document.getElementById("dialog");
-	dialog.innerHTML = '<div id = \'close-dialog\'>[ x ]</div><br><div id=\'dialog-content\'>' + msg + '</div>';
-	dialog.style.opacity = 1;
+	let dialog = document.getElementById('dialog');
+	let dialogContent = document.getElementById('dialog-content');
+	dialogContent.innerHTML = msg;
+	dialog.style.display = 'block';
 	clearTimeout(window.timer);
 	window.timer = setTimeout(() => {
-		dialog.style.opacity = 0;
+		dialog.style.display = 'none';
 	}, duration);
 }
 
@@ -138,6 +154,11 @@ document.getElementById('more').addEventListener('click', () => {
 	}else{
 		tempAlert(`<p>You already have /r/${currentSub} on your list!</p>`, 2000)
 	}
+})
+document.getElementById('close-dialog-btn').addEventListener('click', () => {
+	let dialog = document.getElementById('dialog');
+	clearTimeout(window.timer);
+	dialog.style.display = 'none';
 })
 
 loadRndSub();

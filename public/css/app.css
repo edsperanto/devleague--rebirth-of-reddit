@@ -177,10 +177,14 @@ header {
   left: 30%;
   background-color: white;
   box-shadow: 0 0 1rem 0.2rem black;
-  padding: 2rem; }
+  padding: 2rem;
+  display: none; }
   #dialog #close-dialog {
     width: 100%;
     text-align: right; }
+    #dialog #close-dialog #close-dialog-btn {
+      background-color: white;
+      cursor: pointer; }
   #dialog #dialog-content {
     height: 100%;
     overflow: auto;
@@ -222,6 +226,9 @@ header {
       margin: 0.7rem;
       border: solid 5px white; } }
 
+.post:hover {
+  border: solid 5px #F7941E; }
+
 .aspect {
   margin-bottom: 120%; }
 
@@ -256,6 +263,14 @@ header {
   font-size: 1.3rem;
   cursor: pointer;
   margin-top: 1rem;
+  color: inherit;
+  text-decoration: none; }
+
+.post-stats {
+  font-size: 0.8rem;
+  color: #7B7C7E; }
+
+.post-snippet {
   padding-bottom: 1rem; }
 
 #footer-space {

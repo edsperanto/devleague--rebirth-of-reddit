@@ -1,5 +1,6 @@
 $dark-orange: #B14125;
 $light-orange: #DF5227;
+$border-orange: #F7941E;
 $dark-gray: #3A3A3C;
 $light-gray: #7B7C7E;
 $very-light-gray: #f2f2f2;
@@ -208,9 +209,14 @@ header {
 	background-color: white;
 	box-shadow: 0 0 1rem 0.2rem rgba(0, 0, 0, 33);
 	padding: 2rem;
+	display: none;
 	#close-dialog {
 		width: 100%;
 		text-align: right;
+		#close-dialog-btn {
+			background-color: white;
+			cursor: pointer;
+		}
 	}
 	#dialog-content {
 		height: 100%;
@@ -257,6 +263,10 @@ header {
 	}
 }
 
+.post:hover {
+	border: solid 5px $border-orange;
+}
+
 .aspect {
 	margin-bottom: 120%;
 }
@@ -295,6 +305,14 @@ header {
 	font-size: 1.3rem;
 	cursor: pointer;
 	margin-top: 1rem;
+	color: inherit;
+	text-decoration: none;
+}
+.post-stats {
+	font-size: 0.8rem;
+	color: $light-gray;
+}
+.post-snippet {
 	padding-bottom: 1rem;
 }
 
