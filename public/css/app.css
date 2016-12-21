@@ -158,7 +158,8 @@ header {
   display: none; }
   #dialog #close-dialog {
     width: 100%;
-    text-align: right; }
+    text-align: right;
+    display: none; }
     #dialog #close-dialog #close-dialog-btn {
       background-color: white;
       cursor: pointer; }

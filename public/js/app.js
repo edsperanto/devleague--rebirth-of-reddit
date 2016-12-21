@@ -53,7 +53,7 @@ function loadSub(name) {
 			let previewHref = imageonly => getPreview(response, num, imageonly).split('&amp;').join('\&');
 			let author = response[num].data.author;
 			let upboats = response[num].data.ups;
-			let postTime = response[num].data.created_utc; // =  gmt, created_utc = pacific time
+			let postTime = response[num].data.created_utc;
 			let timeDiff = calcTimeDiff(postTime, -10);
 			// assign values
 			post.className = 'post';
@@ -131,12 +131,17 @@ function tempAlert(msg, duration)
 {
 	let dialog = document.getElementById('dialog');
 	let dialogContent = document.getElementById('dialog-content');
+	let closeBtn = document.getElementById('close-dialog');
 	dialogContent.innerHTML = msg;
 	dialog.style.display = 'block';
+	closeBtn.style.display = 'block';
 	clearTimeout(window.timer);
-	window.timer = setTimeout(() => {
-		dialog.style.display = 'none';
-	}, duration);
+	if(duration > 0) {
+		closeBtn.style.display = 'none';
+		window.timer = setTimeout(() => {
+			dialog.style.display = 'none';
+		}, duration);
+	}
 }
 
 function calcTimeDiff(postTime) {
@@ -182,7 +187,7 @@ document.getElementById('boards').addEventListener('click', () => {
 	if(subList.length === 0) {
 		tempAlert('<p>You do not have any subreddits saved to your list... : (</p>', 2000);
 	}else{
-		tempAlert(msg, 5000);
+		tempAlert(msg, -1);
 	}
 })
 document.getElementById('app').addEventListener('click', () => {
@@ -201,6 +206,12 @@ document.getElementById('close-dialog-btn').addEventListener('click', () => {
 	clearTimeout(window.timer);
 	dialog.style.display = 'none';
 })
+document.getElementById('facebook').addEventListener('click', () => {
+	tempAlert('This button violates the Digital Millennium Copyright Act, this site\'s creator has been reported. Thank you for your cooperation and oversight!', -1);
+});
+document.getElementById('instagram').addEventListener('click', () => {
+	tempAlert('This button violates the Digital Millennium Copyright Act, this site\'s creator has been reported. Thank you for your cooperation and oversight!', -1);
+});
 
 loadRndSub();
 
