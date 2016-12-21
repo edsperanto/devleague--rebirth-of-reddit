@@ -20,7 +20,8 @@ html {
   background-image: url("./../assets/bg.jpg");
   color: black;
   height: 100%;
-  font-family: "Helvetica"; }
+  font-family: "Helvetica";
+  letter-spacing: -1px; }
   @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     html {
       font-size: 45px;
@@ -30,8 +31,7 @@ html {
       font-size: 25px; } }
   @media only screen and (min-device-width: 1024px) {
     html {
-      font-size: 18px;
-      letter-spacing: -1px; } }
+      font-size: 18px; } }
 
 body {
   display: flex;
@@ -81,7 +81,13 @@ header {
   color: #B14125;
   border: solid 1px orange;
   text-align: center;
-  cursor: pointer; }
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+  top: 0.8rem;
+  left: calc(100% - 2.5rem);
+  font-size: 1.3rem;
+  line-height: 1.3rem; }
   @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     #more {
       width: 1.5rem;
@@ -90,23 +96,6 @@ header {
       left: calc(100% - 2.2rem);
       font-size: 1.5rem;
       line-height: 1.2rem; } }
-  @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
-    #more {
-      width: 1.5rem;
-      height: 1.5rem;
-      top: 0.78rem;
-      left: calc(100% - 2.2rem);
-      text-align: center;
-      font-size: 1.5rem;
-      line-height: 1.3rem; } }
-  @media only screen and (min-device-width: 1024px) {
-    #more {
-      width: 1.5rem;
-      height: 1.5rem;
-      top: 0.8rem;
-      left: calc(100% - 2.5rem);
-      font-size: 1.3rem;
-      line-height: 1.3rem; } }
 
 #more:hover, #more:active {
   background-color: #DF5227;
@@ -122,16 +111,8 @@ header {
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  line-height: 1.2rem; }
-  @media only screen and (max-device-width: 450px) and (orientation: portrait) {
-    #menu {
-      font-size: 1rem; } }
-  @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
-    #menu {
-      font-size: 1rem; } }
-  @media only screen and (min-device-width: 1024px) {
-    #menu {
-      font-size: 1rem; } }
+  line-height: 1.2rem;
+  font-size: 1rem; }
 
 .menu-item, .sep {
   height: 100%;
@@ -191,6 +172,12 @@ header {
       width: 80%;
       top: 25%;
       left: 10%; } }
+  @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
+    #dialog {
+      height: 50%;
+      width: 60%;
+      top: 25%;
+      left: 20%; } }
 
 #content {
   width: 100%;
@@ -200,7 +187,7 @@ header {
   justify-content: center; }
   @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     #content {
-      padding-top: 0.5rem; } }
+      padding-top: 0.55rem; } }
   @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
     #content {
       padding-top: 1.2rem; } }
@@ -212,21 +199,20 @@ header {
   background-color: white;
   display: inline-block;
   position: relative;
-  overflow: auto; }
+  overflow: auto;
+  border: solid 5px white;
+  margin: 0.7rem; }
   @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     .post {
       width: calc(100% - 1rem);
-      margin-bottom: 0.5rem; } }
+      margin: 0;
+      margin-bottom: 0.6rem; } }
   @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
     .post {
-      width: 43%;
-      margin: 0.7rem;
-      border: solid 5px white; } }
+      width: 43%; } }
   @media only screen and (min-device-width: 1024px) {
     .post {
-      width: 33%;
-      margin: 0.7rem;
-      border: solid 5px white; } }
+      width: 33%; } }
 
 .post:hover {
   border: solid 5px #F7941E; }
@@ -284,6 +270,9 @@ header {
   margin-top: 1rem;
   color: inherit;
   text-decoration: none; }
+  @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
+    .post-title {
+      font-size: 1.2rem; } }
 
 .post-stats {
   font-size: 0.8rem;
@@ -295,16 +284,14 @@ header {
   padding-bottom: 1.5rem; }
 
 #footer-space {
-  width: 100%; }
+  width: 100%;
+  height: 4rem; }
   @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     #footer-space {
       height: 0.2rem; } }
   @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
     #footer-space {
-      height: 4rem; } }
-  @media only screen and (min-device-width: 1024px) {
-    #footer-space {
-      height: 4rem; } }
+      height: 1.2rem; } }
 
 footer {
   width: 100%;

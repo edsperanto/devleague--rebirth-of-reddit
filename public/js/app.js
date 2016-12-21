@@ -53,7 +53,6 @@ function loadSub(name) {
 			let previewHref = imageonly => getPreview(response, num, imageonly).split('&amp;').join('\&');
 			let author = response[num].data.author;
 			let upboats = response[num].data.ups;
-			console.log(response[num].data);
 			// assign values
 			post.className = 'post';
 			aspect.className = 'aspect';

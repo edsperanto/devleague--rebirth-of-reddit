@@ -39,6 +39,7 @@ html {
 	color: black;
 	height: 100%;
 	font-family: "Helvetica";
+	letter-spacing: -1px;
 	@include respond-to(handheld) {
 		font-size: 45px;
 		letter-spacing: -3px;
@@ -48,7 +49,6 @@ html {
 	}
 	@include respond-to(large) {
 		font-size: 18px;
-		letter-spacing: -1px;
 	}
 }
 
@@ -104,6 +104,12 @@ header {
 	border: solid 1px orange;
 	text-align: center;
 	cursor: pointer;
+	width: 1.5rem;
+	height: 1.5rem;
+	top: 0.8rem;
+	left: calc(100% - 2.5rem);
+	font-size: 1.3rem;
+	line-height: 1.3rem;
 	@include respond-to(handheld) {
 		width: 1.5rem;
 		height: 1.5rem;
@@ -111,23 +117,6 @@ header {
 		left: calc(100% - 2.2rem);
 		font-size: 1.5rem;
 		line-height: 1.2rem;
-	}
-	@include respond-to(tablet) {
-		width: 1.5rem;
-		height: 1.5rem;
-		top: 0.78rem;
-		left: calc(100% - 2.2rem);
-		text-align: center;
-		font-size: 1.5rem;
-		line-height: 1.3rem;
-	}
-	@include respond-to(large) {
-		width: 1.5rem;
-		height: 1.5rem;
-		top: 0.8rem;
-		left: calc(100% - 2.5rem);
-		font-size: 1.3rem;
-		line-height: 1.3rem;
 	}
 }
 
@@ -147,15 +136,7 @@ header {
 	justify-content: center;
 	align-items: center;
 	line-height: 1.2rem;
-	@include respond-to(handheld) { 
-		font-size: 1rem;
-	}
-	@include respond-to(tablet) { 
-		font-size: 1rem;
-	}
-	@include respond-to(large) { 
-		font-size: 1rem;
-	}
+	font-size: 1rem;
 }
 
 .menu-item, .sep {
@@ -225,6 +206,12 @@ header {
 		top: 50% - 25%;
 		left: 50% - 40%;
 	}
+	@include respond-to(tablet) {
+		height: 50%;
+		width: 60%;
+		top: 50% - 25%;
+		left: 50% - 30%;
+	}
 }
 
 #content {
@@ -234,7 +221,7 @@ header {
 	flex-flow: row wrap;
 	justify-content: center;
 	@include respond-to(handheld) {
-		padding-top: 0.5rem;
+		padding-top: 0.55rem;
 	}
 	@include respond-to(tablet) {
 		padding-top: 1.2rem;
@@ -249,19 +236,18 @@ header {
 	display: inline-block;
 	position: relative;
 	overflow: auto;
+	border: solid 5px white;
+	margin: 0.7rem;
 	@include respond-to(handheld) {
 		width: calc(100% - 1rem);
-		margin-bottom: 0.5rem;
+		margin: 0;
+		margin-bottom: 0.6rem;
 	}
 	@include respond-to(tablet) {
 		width: 43%;
-		margin: 0.7rem;
-		border: solid 5px white;
 	}
 	@include respond-to(large) {
 		width: 33%;
-		margin: 0.7rem;
-		border: solid 5px white;
 	}
 }
 
@@ -328,6 +314,9 @@ header {
 	margin-top: 1rem;
 	color: inherit;
 	text-decoration: none;
+	@include respond-to(tablet) {
+		font-size: 1.2rem;
+	}
 }
 .post-stats {
 	font-size: 0.8rem;
@@ -341,14 +330,12 @@ header {
 
 #footer-space {
 	width: 100%;
+	height: 4rem;
 	@include respond-to(handheld) {
 		height: 0.2rem;
 	}
 	@include respond-to(tablet) {
-		height: 4rem;
-	}
-	@include respond-to(large) {
-		height: 4rem;
+		height: 1.2rem;
 	}
 }
 
