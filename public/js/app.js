@@ -44,6 +44,7 @@ function loadSub(name) {
 			let aspect = document.createElement('div');
 			let postContent = document.createElement('div');
 			let imageLink = document.createElement('a');
+			let imageAspect = document.createElement('div');
 			let image = document.createElement('div');
 			let title = document.createElement('a');
 			let stats = document.createElement('a');
@@ -58,6 +59,7 @@ function loadSub(name) {
 			aspect.className = 'aspect';
 			postContent.className = 'post-content';
 			imageLink.className = 'post-image-link';
+			imageAspect.className = 'post-image-aspect';
 			image.className = 'post-image';
 			title.className = 'post-title';
 			stats.className = 'post-stats';
@@ -67,6 +69,7 @@ function loadSub(name) {
 			post.appendChild(aspect);
 			post.appendChild(postContent);
 			postContent.appendChild(imageLink);
+			imageLink.appendChild(imageAspect);
 			imageLink.appendChild(image);
 			postContent.appendChild(title);
 			postContent.appendChild(stats);
@@ -79,15 +82,15 @@ function loadSub(name) {
 			title.href = "http://www.reddit.com" + response[num].data.permalink;
 			stats.innerHTML = `by ${author} &nbsp; ● &nbsp; ${upboats} upboats`;
 			stats.href = 'http://www.reddit.com/u/' + author;
-			let tempArr = title.href.split('/');
-			tempArr.pop();
-			tempArr.pop();
-			tempArr[tempArr.length - 1] += '.json';
 			snippet.innerText = response[num].data.selftext;
-			load(tempArr.join('/'), function() {
-				let response = JSON.parse(this.responseText);
-				console.log(response);
-			})
+			// let tempArr = title.href.split('/');
+			// tempArr.pop();
+			// tempArr.pop();
+			// tempArr[tempArr.length - 1] += '.json';
+			// load(tempArr.join('/'), function() {
+			// 	let response = JSON.parse(this.responseText);
+			// 	console.log(response);
+			// })
 		}
 		function getHref(num) {
 			let imgHref = (findExt(response[num].data.url)) ? 

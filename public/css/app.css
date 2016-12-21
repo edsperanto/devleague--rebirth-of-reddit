@@ -233,16 +233,20 @@ header {
 
 .aspect {
   margin-bottom: 120%; }
+  @media only screen and (max-device-width: 450px) and (orientation: portrait) {
+    .aspect {
+      margin-bottom: 0; } }
 
 .post-content {
   position: absolute;
   left: 0;
   top: 0;
-  right: 0;
-  bottom: 0;
   width: 100%;
   height: 100%;
   padding: 1.5rem; }
+  @media only screen and (max-device-width: 450px) and (orientation: portrait) {
+    .post-content {
+      position: relative; } }
 
 .post-image-link {
   display: inline-block;
@@ -251,12 +255,25 @@ header {
   background-color: #f2f2f2;
   background-size: cover;
   background-position: 0 0; }
+  @media only screen and (max-device-width: 450px) and (orientation: portrait) {
+    .post-image-link {
+      position: relative; } }
+
+@media only screen and (max-device-width: 450px) and (orientation: portrait) {
+  .post-image-aspect {
+    margin-bottom: 120%; } }
 
 .post-image {
   background-size: cover;
   background-position: 0 0;
   height: 100%;
   width: 100%; }
+  @media only screen and (max-device-width: 450px) and (orientation: portrait) {
+    .post-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%; } }
 
 .post-title {
   display: inline-block;
