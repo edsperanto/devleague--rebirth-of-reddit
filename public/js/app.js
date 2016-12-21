@@ -1,7 +1,8 @@
 let currentSub = "";
 let subList = [];
-let alertActive = false;
 let tries = 0;
+let lastPost = "";
+let scrollConfirm = false;
 
 function load(link, callback) {
 	let oReq = new XMLHttpRequest();
@@ -26,17 +27,27 @@ function findExt(searchQuery) {
 	return false;
 }
 
-function loadSub(name) {
+function loadSub(name, loadingNewSub) {
+	let content = document.getElementById('content');
+	let loadLink = `https://www.reddit.com/r/${name}.json`;
 	currentSub = name;
-	tempAlert(`Welcome to /r/${currentSub}`, 2000);
-	document.getElementById('content').innerHTML = "";
-	load(`https://www.reddit.com/r/${name}.json`, function() {
-		let content = document.getElementById('content');
+	if(loadingNewSub) {
+		tempAlert(`Welcome to /r/${currentSub}`, 2000);
+		document.getElementById('content').innerHTML = "";
+	}else{
+		loadLink += `?after=${lastPost}`;
+		let footerSpace = document.getElementById('footer-space');
+		content.removeChild(footerSpace);
+	}
+	load(loadLink, function() {
 		let response = JSON.parse(this.responseText).data.children;
 		for(let i = 0; i < response.length; i++) {
 			let pass = 	(notFindStr(response[i].data.url)) &&
 						(typeof response[i].data.preview === 'object');
 			if(pass || response[i].data.domain === 'i.reddituploads.com') { getContent(i); }
+			if(i === response.length - 1) {
+				lastPost = response[i].data.name;
+			}
 		}
 		document.getElementById('content').innerHTML += "<div id = 'footer-space'></div>";
 		function getContent(num) {
@@ -117,7 +128,8 @@ function loadSub(name) {
 function loadRndSub() {
 	let subreddits = ['cats', 'aww', 'scenery', 'EarthPorn', 'auroraporn', 'softwaregore', 'spaceporn', 'foodporn', 'grilledcheese', 'techsupportgore', 'firstworldanarchists', 'InterestingGIFs', 'NatureGifs', 'perfectloops', 'physicsgifs'];
 	let newSub = subreddits[Math.floor(Math.random() * (subreddits.length - 1))];
-	loadSub(newSub);
+	lastPost = "";
+	loadSub(newSub, true);
 }
 
 function tempAlert(msg, duration)
@@ -236,3 +248,15 @@ document.getElementById('instagram').addEventListener('click', () => {
 loadRndSub();
 
 //loadSub('accidentalrenaissance');
+
+/* BONUS FUNCTIONALITY */
+
+document.addEventListener('scroll', function (event) {
+    if (document.body.scrollHeight == document.body.scrollTop + window.innerHeight) {
+    	if(scrollConfirm) {
+    		loadSub(currentSub, false);
+    	}else{
+    		scrollConfirm = true;
+    	}
+    }
+});
