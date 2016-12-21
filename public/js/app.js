@@ -196,13 +196,18 @@ document.getElementById('random').addEventListener('click', loadRndSub);
 document.getElementById('boards').addEventListener('click', () => {
 	let msg = "<p>You have saved the following subreddits to your list:</p><ul>";
 	for(let i = 0; i < subList.length; i++) {
-		msg += '<li>/r/' + subList[i] + '</li>';
+		msg += `<li class = 'saved'> &nbsp; - /r/${subList[i]}</li>`;
 	}
 	msg += '</ul>'
 	if(subList.length === 0) {
 		tempAlert('<p>You do not have any subreddits saved to your list... : (</p>', 2000);
 	}else{
 		tempAlert(msg, -1);
+		for(let i = 0; i < subList.length; i++) {
+			let savedSub = document.getElementsByClassName('saved')[i];
+			savedSub.addEventListener('click', function() { loadSub(subList[i]); });
+			savedSub.style.cursor = 'pointer';
+		}
 	}
 })
 document.getElementById('app').addEventListener('click', () => {

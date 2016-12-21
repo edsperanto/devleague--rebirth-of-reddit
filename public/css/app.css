@@ -55,14 +55,11 @@ header {
 
 #logo {
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   background-image: url("./../assets/logo.svg");
   background-repeat: no-repeat;
   background-position: center;
-  position: absolute;
-  width: 100%;
+  width: 8rem;
   height: 100%;
   top: 0.15rem;
   cursor: pointer; }
@@ -168,6 +165,8 @@ header {
     height: 80%;
     overflow: auto;
     display: block; }
+  #dialog .saved {
+    width: auto; }
   @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     #dialog {
       height: 50%;

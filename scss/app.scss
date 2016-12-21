@@ -76,14 +76,11 @@ header {
 
 #logo {
 	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	display: block;
 	background-image: url('./../assets/logo.svg');
 	background-repeat: no-repeat;
 	background-position: center;
-	position: absolute;
-	width: 100%;
+	width: 8rem;
 	height: 100%;
 	top: 0.15rem;
 	cursor: pointer;
@@ -202,6 +199,9 @@ header {
 		overflow: auto;
 		display: block;
 
+	}
+	.saved {
+		width: auto;
 	}
 	@include respond-to(handheld) {
 		height: 50%;
