@@ -1,6 +1,7 @@
 let currentSub = "";
 let subList = [];
 let alertActive = false;
+let tries = 0;
 
 function load(link, callback) {
 	let oReq = new XMLHttpRequest();
@@ -168,6 +169,29 @@ function calcTimeDiff(postTime) {
 	return str + ' ago';
 }
 
+document.getElementById('logo').addEventListener('click', () => {
+	tries++;
+	switch(tries) {
+		case 1:
+			tempAlert('Why would you click on this logo? There\'s nothing here.');
+			break;
+		case 2:
+			tempAlert('Do you even read English???');
+			break;
+		case 3:
+			tempAlert('I am so annoyed right now. I\'m triggered. You need to stop right now or I\'m calling 911.');
+			break;
+		case 4:
+			tempAlert('Fine, the Answer to the Ultimate Question of Life, The Universe, and Everything is 42. \'So long and thanks for all the fish!\' said the dolphins, and you are the subject of an experiment by white mice.');
+			break;
+		case 5:
+			tempAlert('I\'m sorry %%FIRST_NAME%%. I\'m afraid I can\'t do that.');
+			break;
+		default:
+			tempAlert('I\'m afraid %%FIRST_NAME%%, I\'m afraid...');
+			break;
+	}
+});
 document.getElementById('random').addEventListener('click', loadRndSub);
 document.getElementById('boards').addEventListener('click', () => {
 	let msg = "<p>You have saved the following subreddits to your list:</p><ul>";
