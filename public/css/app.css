@@ -293,10 +293,24 @@ footer {
   flex-flow: row wrap;
   justify-content: center;
   position: fixed;
-  top: calc(100% - 2.5rem); }
+  top: calc(100% - 2.5rem);
+  z-index: 50; }
   @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     footer {
       display: none; } }
   @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
     footer {
       display: none; } }
+  footer * {
+    height: 100%;
+    width: 2.5rem;
+    z-index: 100; }
+
+#facebook {
+  background: url("./../assets/facebook_grey.svg") no-repeat center; }
+
+#instagram {
+  background: url("./../assets/instagram_grey.svg") no-repeat center; }
+
+#instagram:hover {
+  background: url("./../assets/instagram_orange.svg") no-repeat center; }
