@@ -63,6 +63,7 @@ header {
 	width: 100%;
 	background-color: white !important;
 	display: flex;
+	position: relative;
 	height: 3rem;
 	flex-flow: row wrap;
 	justify-content: center;
@@ -81,22 +82,17 @@ header {
 	background-image: url('./../assets/logo.svg');
 	background-repeat: no-repeat;
 	background-position: center;
+	position: absolute;
 	width: 100%;
 	height: 100%;
+	top: 0.15rem;
 	@include respond-to(handheld) { 
 		width: auto;
-		padding-left: 0.12rem;
-      	padding-top: 0.09rem;
+		top: 0;
+		padding-left: 0.5rem;
+      	padding-top: 0.2rem;
 		content: url('./../assets/logo.svg');
 		background: none;
-	}
-	@include respond-to(tablet) { 
-		padding-top: 0.15rem;
-		height: 90%;
-	}
-	@include respond-to(large) { 
-		padding-top: 0.15rem;
-		height: 100%;
 	}
 }
 
@@ -114,7 +110,7 @@ header {
 		top: 0.78rem;
 		left: calc(100% - 2.2rem);
 		font-size: 1.5rem;
-		line-height: 1.3rem;
+		line-height: 1.2rem;
 	}
 	@include respond-to(tablet) {
 		width: 1.5rem;
@@ -128,10 +124,10 @@ header {
 	@include respond-to(large) {
 		width: 1.5rem;
 		height: 1.5rem;
-		top: 0.7rem;
+		top: 0.8rem;
 		left: calc(100% - 2.5rem);
 		font-size: 1.3rem;
-		line-height: 1.5rem;
+		line-height: 1.3rem;
 	}
 }
 
@@ -202,8 +198,8 @@ header {
 #dialog {
 	position: fixed;
 	z-index: 999;
-	width: $dialog-width;
 	height: $dialog-height;
+	width: $dialog-width;
 	top: 50% - $dialog-height / 2;
 	left: 50% - $dialog-width / 2;
 	background-color: white;
@@ -222,6 +218,12 @@ header {
 		height: 100%;
 		overflow: auto;
 		padding-bottom: 2rem;
+	}
+	@include respond-to(handheld) {
+		height: 50%;
+		width: 80%;
+		top: 50% - 25%;
+		left: 50% - 40%;
 	}
 }
 
@@ -311,9 +313,11 @@ header {
 .post-stats {
 	font-size: 0.8rem;
 	color: $light-gray;
+	cursor: pointer;
+	text-decoration: none;
 }
 .post-snippet {
-	padding-bottom: 1rem;
+	padding-bottom: 1.5rem;
 }
 
 #footer-space {
@@ -347,12 +351,18 @@ footer {
 	}
 	& * {
 		height: 100%;
-		width: 2.5rem;
+		width: 1.5rem;
+		margin-left: 0.5rem;
+		margin-right: 0.5rem;
 		z-index: 100;
+		cursor: pointer;
 	}
 }
 #facebook {
 	background: url('./../assets/facebook_grey.svg') no-repeat center;
+}
+#facebook:hover {
+	background: url('./../assets/facebook_blue.svg') no-repeat center;
 }
 #instagram {
 	background: url('./../assets/instagram_grey.svg') no-repeat center;

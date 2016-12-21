@@ -43,6 +43,7 @@ header {
   width: 100%;
   background-color: white !important;
   display: flex;
+  position: relative;
   height: 3rem;
   flex-flow: row wrap;
   justify-content: center;
@@ -60,23 +61,18 @@ header {
   background-image: url("./../assets/logo.svg");
   background-repeat: no-repeat;
   background-position: center;
+  position: absolute;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  top: 0.15rem; }
   @media only screen and (max-device-width: 450px) and (orientation: portrait) {
     #logo {
       width: auto;
-      padding-left: 0.12rem;
-      padding-top: 0.09rem;
+      top: 0;
+      padding-left: 0.5rem;
+      padding-top: 0.2rem;
       content: url("./../assets/logo.svg");
       background: none; } }
-  @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
-    #logo {
-      padding-top: 0.15rem;
-      height: 90%; } }
-  @media only screen and (min-device-width: 1024px) {
-    #logo {
-      padding-top: 0.15rem;
-      height: 100%; } }
 
 #more {
   position: absolute;
@@ -93,7 +89,7 @@ header {
       top: 0.78rem;
       left: calc(100% - 2.2rem);
       font-size: 1.5rem;
-      line-height: 1.3rem; } }
+      line-height: 1.2rem; } }
   @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) {
     #more {
       width: 1.5rem;
@@ -107,10 +103,10 @@ header {
     #more {
       width: 1.5rem;
       height: 1.5rem;
-      top: 0.7rem;
+      top: 0.8rem;
       left: calc(100% - 2.5rem);
       font-size: 1.3rem;
-      line-height: 1.5rem; } }
+      line-height: 1.3rem; } }
 
 #more:hover, #more:active {
   background-color: #DF5227;
@@ -171,8 +167,8 @@ header {
 #dialog {
   position: fixed;
   z-index: 999;
-  width: 40%;
   height: 20%;
+  width: 40%;
   top: 40%;
   left: 30%;
   background-color: white;
@@ -189,6 +185,12 @@ header {
     height: 100%;
     overflow: auto;
     padding-bottom: 2rem; }
+  @media only screen and (max-device-width: 450px) and (orientation: portrait) {
+    #dialog {
+      height: 50%;
+      width: 80%;
+      top: 25%;
+      left: 10%; } }
 
 #content {
   width: 100%;
@@ -268,10 +270,12 @@ header {
 
 .post-stats {
   font-size: 0.8rem;
-  color: #7B7C7E; }
+  color: #7B7C7E;
+  cursor: pointer;
+  text-decoration: none; }
 
 .post-snippet {
-  padding-bottom: 1rem; }
+  padding-bottom: 1.5rem; }
 
 #footer-space {
   width: 100%; }
@@ -303,11 +307,17 @@ footer {
       display: none; } }
   footer * {
     height: 100%;
-    width: 2.5rem;
-    z-index: 100; }
+    width: 1.5rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    z-index: 100;
+    cursor: pointer; }
 
 #facebook {
   background: url("./../assets/facebook_grey.svg") no-repeat center; }
+
+#facebook:hover {
+  background: url("./../assets/facebook_blue.svg") no-repeat center; }
 
 #instagram {
   background: url("./../assets/instagram_grey.svg") no-repeat center; }

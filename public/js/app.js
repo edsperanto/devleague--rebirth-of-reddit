@@ -3,7 +3,7 @@ let subList = [];
 let alertActive = false;
 
 function load(link, callback) {
-	oReq = new XMLHttpRequest();
+	let oReq = new XMLHttpRequest();
 	oReq.addEventListener('load', function() { callback.call(this); });
 	oReq.open('GET', link);
 	oReq.send();
@@ -26,6 +26,7 @@ function findExt(searchQuery) {
 }
 
 function loadSub(name) {
+	currentSub = name;
 	tempAlert(`Welcome to /r/${currentSub}`, 2000);
 	document.getElementById('content').innerHTML = "";
 	load(`https://www.reddit.com/r/${name}.json`, function() {
@@ -51,6 +52,7 @@ function loadSub(name) {
 			let previewHref = imageonly => getPreview(response, num, imageonly).split('&amp;').join('\&');
 			let author = response[num].data.author;
 			let upboats = response[num].data.ups;
+			console.log(response[num].data);
 			// assign values
 			post.className = 'post';
 			aspect.className = 'aspect';
@@ -76,14 +78,16 @@ function loadSub(name) {
 			title.innerText = response[num].data.title;
 			title.href = "http://www.reddit.com" + response[num].data.permalink;
 			stats.innerHTML = `by ${author} &nbsp; ● &nbsp; ${upboats} upboats`;
+			stats.href = 'http://www.reddit.com/u/' + author;
 			let tempArr = title.href.split('/');
 			tempArr.pop();
 			tempArr.pop();
 			tempArr[tempArr.length - 1] += '.json';
-			// load(tempArr.join('/'), function() {
-			// 	let response = JSON.parse(this.responseText);
-			// 	console.log(response);
-			// })
+			snippet.innerText = response[num].data.selftext;
+			load(tempArr.join('/'), function() {
+				let response = JSON.parse(this.responseText);
+				console.log(response);
+			})
 		}
 		function getHref(num) {
 			let imgHref = (findExt(response[num].data.url)) ? 
@@ -115,8 +119,8 @@ function loadSub(name) {
 
 function loadRndSub() {
 	let subreddits = ['cats', 'aww', 'scenery', 'EarthPorn', 'auroraporn', 'softwaregore', 'spaceporn', 'foodporn', 'grilledcheese', 'techsupportgore', 'firstworldanarchists', 'InterestingGIFs', 'NatureGifs', 'perfectloops', 'physicsgifs'];
-	currentSub = subreddits[Math.floor(Math.random() * (subreddits.length - 1))];
-	loadSub(currentSub);
+	let newSub = subreddits[Math.floor(Math.random() * (subreddits.length - 1))];
+	loadSub(newSub);
 }
 
 function tempAlert(msg, duration)
@@ -163,4 +167,4 @@ document.getElementById('close-dialog-btn').addEventListener('click', () => {
 
 loadRndSub();
 
-//loadSub('physicsgifs');
+//loadSub('accidentalrenaissance');
