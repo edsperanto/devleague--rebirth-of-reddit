@@ -84,14 +84,6 @@ function loadSub(name) {
 			stats.innerHTML = `by ${author} &nbsp; ● &nbsp; ${timeDiff} &nbsp; ● &nbsp; ${upboats} upboats`;
 			stats.href = 'http://www.reddit.com/u/' + author;
 			snippet.innerText = response[num].data.selftext;
-			// let tempArr = title.href.split('/');
-			// tempArr.pop();
-			// tempArr.pop();
-			// tempArr[tempArr.length - 1] += '.json';
-			// load(tempArr.join('/'), function() {
-			// 	let response = JSON.parse(this.responseText);
-			// 	console.log(response);
-			// })
 		}
 		function getHref(num) {
 			let imgHref = (findExt(response[num].data.url)) ? 
@@ -148,7 +140,6 @@ function calcTimeDiff(postTime) {
 	let localTime = new Date().getTime();
 	localTime = Math.round(localTime / 1000); 
 	let diffTime = localTime - postTime;
-	console.log('diff', diffTime);
 	let str = "";
 	if(diffTime < 60) { 
 		str = `${Math.floor(diffTime)} second`;
