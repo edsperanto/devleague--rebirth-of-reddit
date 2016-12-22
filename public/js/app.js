@@ -62,7 +62,7 @@ function loadSub(name, loadingNewSub) {
 			let stats = document.createElement('a');
 			let snippet = document.createElement('a');
 			let imgHref = getHref(num);
-			let previewHref = imageonly => getPreview(response, num, imageonly).split('&amp;').join('\&');
+			let previewHref = imageonly => getPreview(response, num, imageonly).split('&amp;').join('&');
 			let author = response[num].data.author;
 			let upboats = response[num].data.ups;
 			let postTime = response[num].data.created_utc;
@@ -105,6 +105,7 @@ function loadSub(name, loadingNewSub) {
 			return imgHref.split('&amp;').join('\&');
 		}
 		function getPreview(response, num, fallback) {
+
 			if(response[num].data.url.indexOf('reddituploads') > -1) {
 				return response[num].data.url;
 			}else{
@@ -114,9 +115,7 @@ function loadSub(name, loadingNewSub) {
 				}
 				if(response[num].data.url.indexOf('.gif') > -1) {
 					let gifs = images.variants.gif.resolutions;
-					return (gifs[1].url.indexOf('.gifv') > -1) ?
-					       (gifs[1].url.substr(0, imgHref.length - 1)) : 
-					       (gifs[1].url);
+					return gifs[1].url.split('gifv').join('gif');
 				}else{
 					return images.resolutions[2].url;
 				}
@@ -217,7 +216,7 @@ document.getElementById('boards').addEventListener('click', () => {
 		tempAlert(msg, -1);
 		for(let i = 0; i < subList.length; i++) {
 			let savedSub = document.getElementsByClassName('saved')[i];
-			savedSub.addEventListener('click', function() { loadSub(subList[i]); });
+			savedSub.addEventListener('click', function() { loadSub(subList[i], true); });
 			savedSub.style.cursor = 'pointer';
 		}
 	}

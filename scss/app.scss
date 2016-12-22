@@ -10,13 +10,21 @@ $dialog-height: 30%;
 
 @mixin respond-to($media) {
   @if $media == handheld {
-    @media only screen and (max-device-width: 450px) and (orientation: portrait) { @content; }
+    @media only screen and (max-device-width: 458px) and (orientation: portrait),
+    	   only screen and (min-device-width: 1024px) and (max-width: 458px) { @content; }
+  }
+  @else if $media == small-window {
+    @media only screen and (min-device-width: 1024px) and (max-width: 458px) { @content; }
   }
   @else if $media == tablet {
-    @media only screen and (min-device-width: 451px) and (max-device-width: 1024px) { @content; }
+    @media only screen and (min-device-width: 459px) and (max-device-width: 1024px),
+    	   only screen and (min-device-width: 1024px) and (min-width: 459px) { @content; }
+  }
+  @else if $media == medium-window {
+    @media only screen and (min-device-width: 1024px) and (min-width: 460px) { @content; }
   }
   @else if $media == large {
-    @media only screen and (min-device-width: 1024px) { @content; }
+    @media only screen and (min-device-width: 1024px) and (min-width: 1024px) { @content; }
   }
 }
 
@@ -44,8 +52,16 @@ html {
 		font-size: 45px;
 		letter-spacing: -3px;
 	}
+	@include respond-to(small-window) {
+		font-size: 18px;
+		letter-spacing: -1px;
+	}
 	@include respond-to(tablet) {
 		font-size: 25px;
+	}
+	@include respond-to(medium-window) {
+		font-size: 18px;
+		letter-spacing: -1px;
 	}
 	@include respond-to(large) {
 		font-size: 18px;
@@ -242,9 +258,14 @@ header {
 	border: solid 5px white;
 	margin: 0.7rem;
 	@include respond-to(handheld) {
-		width: calc(100% - 1rem);
-		margin: 0;
-		margin-bottom: 0.6rem;
+		width: calc(100% - 1rem) !important;
+		margin: 0 !important;
+		margin-bottom: 0.6rem !important;
+	}
+	@include respond-to(small-window) {
+		width: calc(100% - 1rem) !important;
+		margin: 0 !important;
+		margin-bottom: 0.6rem !important;
 	}
 	@include respond-to(tablet) {
 		width: 43%;
@@ -261,7 +282,10 @@ header {
 .aspect {
 	margin-bottom: 120%;
 	@include respond-to(handheld) {
-		margin-bottom: 0;
+		margin-bottom: 0 !important;
+	}
+	@include respond-to(small-window) {
+		margin-bottom: 0 !important;
 	}
 }
 
@@ -273,7 +297,10 @@ header {
 	height: 100%;
 	padding: $post-padding;
 	@include respond-to(handheld) {
-		position: relative;
+		position: relative !important;
+	}
+	@include respond-to(small-window) {
+		position: relative !important;
 	}
 }
 
@@ -285,13 +312,19 @@ header {
 	background-size: cover;
 	background-position: 0 0;
 	@include respond-to(handheld) {
-		position: relative;
+		position: relative !important;
+	}
+	@include respond-to(small-window) {
+		position: relative !important;
 	}
 }
 
 .post-image-aspect {
 	@include respond-to(handheld) {
-		margin-bottom: 120%;
+		margin-bottom: 120% !important;
+	}
+	@include respond-to(small-window) {
+		margin-bottom: 120% !important;
 	}
 }
 
@@ -301,10 +334,16 @@ header {
 	height: 100%;
 	width: 100%;
 	@include respond-to(handheld) {
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: 100%;
+		position: absolute !important;
+		top: 0 !important;
+		left: 0 !important;
+		height: 100% !important;
+	}
+	@include respond-to(small-window) {
+		position: absolute !important;
+		top: 0 !important;
+		left: 0 !important;
+		height: 100% !important;
 	}
 }
 
