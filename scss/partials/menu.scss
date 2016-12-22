@@ -1,0 +1,49 @@
+#menu {
+	background-color: $dark-gray;
+	color: $light-gray;
+	width: 100%;
+	height: 2rem;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	line-height: 1.2rem;
+	font-size: 1rem;
+}
+
+.menu-item, .sep {
+	height: 100%;
+	text-align: center;
+	margin-left: 1rem;
+	@include respond-to(handheld) {
+		margin-left: 0;
+	}
+}
+
+.menu-item {
+	border-style: none;
+	line-height: 200%;
+	cursor: pointer;
+	@include respond-to(handheld) {
+		flex: 1 0 33%;
+		border-left: solid 2px $light-gray;
+	}
+}
+
+#random {
+	@include respond-to(handheld) {
+		border: solid 0px black;
+	}
+}
+
+.menu-item:hover {
+	color: $light-orange;
+}
+
+.sep {
+	line-height: 180%;
+	cursor: default;
+	@include respond-to(handheld) {
+		display: none;
+	}
+}

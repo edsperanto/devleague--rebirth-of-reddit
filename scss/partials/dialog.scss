@@ -1,0 +1,43 @@
+$dialog-height: 30%;
+#dialog {
+	position: fixed;
+	z-index: 999;
+	height: $dialog-height;
+	width: $dialog-width;
+	top: 50% - $dialog-height / 2;
+	left: 50% - $dialog-width / 2;
+	background-color: white;
+	box-shadow: 0 0 1rem 0.2rem rgba(0, 0, 0, 33);
+	padding: 2rem;
+	display: none;
+	#close-dialog {
+		width: 100%;
+		text-align: right;
+		display: none;
+		#close-dialog-btn {
+			background-color: white;
+			cursor: pointer;
+		}
+	}
+	#dialog-content {
+		height: 80%;
+		overflow: auto;
+		display: block;
+
+	}
+	.saved {
+		width: auto;
+	}
+	@include respond-to(handheld) {
+		height: 50%;
+		width: 80%;
+		top: 50% - 25%;
+		left: 50% - 40%;
+	}
+	@include respond-to(tablet) {
+		height: 50%;
+		width: 60%;
+		top: 50% - 25%;
+		left: 50% - 30%;
+	}
+}

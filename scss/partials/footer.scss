@@ -1,0 +1,48 @@
+#footer-space {
+	width: 100%;
+	height: 4rem;
+	@include respond-to(handheld) {
+		height: 0.2rem;
+	}
+	@include respond-to(tablet) {
+		height: 1.2rem;
+	}
+}
+
+footer {
+	width: 100%;
+	height: 2.5rem;
+	background-color: $dark-gray;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	position: fixed;
+	top: calc(100% - 2.5rem);
+	z-index: 50;
+	@include respond-to(handheld) {
+		display: none;
+	}
+	@include respond-to(tablet) {
+		display: none;
+	}
+	& * {
+		height: 100%;
+		width: 1.5rem;
+		margin-left: 0.5rem;
+		margin-right: 0.5rem;
+		z-index: 100;
+		cursor: pointer;
+	}
+}
+#facebook {
+	background: url('./../assets/facebook_grey.svg') no-repeat center;
+}
+#facebook:hover {
+	background: url('./../assets/facebook_blue.svg') no-repeat center;
+}
+#instagram {
+	background: url('./../assets/instagram_grey.svg') no-repeat center;
+}
+#instagram:hover {
+	background: url('./../assets/instagram_orange.svg') no-repeat center;
+}

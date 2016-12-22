@@ -1,0 +1,64 @@
+header {
+	width: 100%;
+	background-color: white !important;
+	display: flex;
+	position: relative;
+	height: 3rem;
+	flex-flow: row wrap;
+	justify-content: center;
+	background: url('./../assets/header_bg.svg') no-repeat center;
+	@include respond-to(handheld) { 
+		justify-content: flex-start;
+		background: none;
+	}
+}
+
+#logo {
+	height: 100%;
+	display: block;
+	background-image: url('./../assets/logo.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 8rem;
+	height: 100%;
+	top: 0.15rem;
+	cursor: pointer;
+	@include respond-to(handheld) { 
+		width: auto;
+		top: 0;
+		padding-left: 0.5rem;
+      	padding-top: 0.2rem;
+		content: url('./../assets/logo.svg');
+		background: none;
+	}
+}
+
+#more {
+	position: absolute;
+	float: right;
+	background-color: transparent;
+	color: $dark-orange;
+	border: solid 1px orange;
+	text-align: center;
+	cursor: pointer;
+	width: 1.5rem;
+	height: 1.5rem;
+	top: 0.8rem;
+	left: calc(100% - 2.5rem);
+	font-size: 1.3rem;
+	line-height: 1.3rem;
+	@include respond-to(handheld) {
+		width: 1.5rem;
+		height: 1.5rem;
+		top: 0.78rem;
+		left: calc(100% - 2.2rem);
+		font-size: 1.5rem;
+		line-height: 1.2rem;
+	}
+}
+
+#more:hover, #more:active {
+	background-color: $light-orange;
+	color: white;
+	border-color: $light-orange;
+}

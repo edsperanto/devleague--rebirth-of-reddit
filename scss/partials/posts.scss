@@ -1,0 +1,114 @@
+#content {
+	width: 100%;
+	flex: 1;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	@include respond-to(handheld) {
+		padding-top: 0.55rem;
+	}
+	@include respond-to(tablet) {
+		padding-top: 1.2rem;
+	}
+	@include respond-to(large) {
+		padding-top: 1.5rem;
+	}
+}
+
+.post {
+	background-color: white;
+	display: inline-block;
+	position: relative;
+	overflow: auto;
+	border: solid 5px white;
+	margin: 0.7rem;
+	@include respond-to(handheld) {
+		width: calc(100% - 1rem);
+		margin: 0;
+		margin-bottom: 0.6rem;
+	}
+	@include respond-to(tablet) {
+		width: 43%;
+	}
+	@include respond-to(large) {
+		width: 33%;
+	}
+}
+
+.post:hover {
+	border: solid 5px $border-orange;
+}
+
+.aspect {
+	margin-bottom: 120%;
+	@include respond-to(handheld) {
+		margin-bottom: 0;
+	}
+}
+
+.post-content {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	padding: $post-padding;
+	@include respond-to(handheld) {
+		position: relative;
+	}
+}
+
+.post-image-link {
+	display: inline-block;
+	height: calc(50%);
+	width: 100%;
+	background-color: $very-light-gray;
+	background-size: cover;
+	background-position: 0 0;
+	@include respond-to(handheld) {
+		position: relative;
+		height: auto;
+	}
+}
+
+.post-image-aspect {
+	@include respond-to(handheld) {
+		margin-bottom: 120%;
+	}
+}
+
+.post-image {
+	background-size: cover;
+	background-position: 0 0;
+	height: 100%;
+	width: 100%;
+	@include respond-to(handheld) {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+	}
+}
+
+.post-title {
+	display: inline-block;
+	text-wrap: unrestricted;
+	width: 100%;
+	font-size: 1.3rem;
+	cursor: pointer;
+	margin-top: 1rem;
+	color: inherit;
+	text-decoration: none;
+	@include respond-to(tablet) {
+		font-size: 1.2rem;
+	}
+}
+.post-stats {
+	font-size: 0.8rem;
+	color: $light-gray;
+	cursor: pointer;
+	text-decoration: none;
+}
+.post-snippet {
+	padding-bottom: 1.5rem;
+}

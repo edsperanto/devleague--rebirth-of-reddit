@@ -3,7 +3,7 @@ const scss = require('gulp-sass');
 const browserSync = require('browser-sync').create();
 
 gulp.task('scss', () => {
-	return gulp.src('./scss/**/*.scss')
+	return gulp.src('./scss/app.scss')
 		.pipe(scss({ errLogToConsole: true }))
 		.pipe(gulp.dest('./public/css'));
 });
